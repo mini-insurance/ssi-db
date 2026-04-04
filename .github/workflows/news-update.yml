@@ -1,0 +1,31 @@
+name: ニュース自動更新
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # UTC 22:00 = JST 07:00
+  workflow_dispatch:       # 手動実行も可能
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ニュース取得
+        run: node scripts/fetch-news.mjs
+
+      - name: 変更があればコミット＆push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add news.json
+          git diff --cached --quiet && echo "更新なし" && exit 0
+          git commit -m "ニュース自動更新: $(date +%Y-%m-%d)"
+          git push
