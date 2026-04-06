@@ -67,7 +67,8 @@ async function main() {
   const items = parseRssItems(xml);
   console.log(items.length + ' 件の記事を取得');
 
-  const existing = JSON.parse(readFileSync(NEWS_FILE, 'utf-8'));
+  const raw = JSON.parse(readFileSync(NEWS_FILE, 'utf-8'));
+  const existing = Array.isArray(raw) ? raw : (raw.items || []);
   const existingTitles = new Set(existing.map(n => n.title.slice(0, 30)));
   const existingUrls = new Set(existing.map(n => n.url));
   let added = 0;
@@ -88,7 +89,8 @@ async function main() {
   }
 
   existing.sort((a, b) => b.date.localeCompare(a.date));
-  writeFileSync(NEWS_FILE, JSON.stringify(existing, null, 2) + '\n', 'utf-8');
+  const output = { lastFetched: new Date().toISOString().slice(0, 10), items: existing };
+  writeFileSync(NEWS_FILE, JSON.stringify(output, null, 2) + '\n', 'utf-8');
   console.log('完了: ' + added + ' 件追加 (合計 ' + existing.length + ' 件)');
 }
 

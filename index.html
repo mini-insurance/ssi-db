@@ -820,10 +820,15 @@ function onEditChange(coIdx, key, value) {
 // ===== NEWS VIEW =====
 let NEWS = [];
 
+let NEWS_LAST_FETCHED = '';
+
 async function loadNews() {
   try {
     const res = await fetch('./news.json');
-    if (res.ok) NEWS = await res.json();
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) { NEWS = data; } else { NEWS_LAST_FETCHED = data.lastFetched || ''; NEWS = data.items || []; }
+    }
   } catch(e) {}
 }
 
@@ -859,8 +864,11 @@ function renderNews() {
   document.getElementById('news-list').innerHTML = html;
   const today = new Date().toISOString().slice(0, 10);
   const latestPast = NEWS.find(n => n.date <= today);
-  const latest = latestPast ? latestPast.date : (NEWS.length > 0 ? NEWS[0].date : '');
-  document.getElementById('news-updated').textContent = items.length + '件 | 最終更新: ' + latest;
+  const latestNews = latestPast ? latestPast.date : (NEWS.length > 0 ? NEWS[0].date : '');
+  let statusText = items.length + '件';
+  if (NEWS_LAST_FETCHED) statusText += ' | 最終取得: ' + NEWS_LAST_FETCHED;
+  if (latestNews) statusText += ' | 最新ニュース: ' + latestNews;
+  document.getElementById('news-updated').textContent = statusText;
 }
 
 function applyEdits() {
