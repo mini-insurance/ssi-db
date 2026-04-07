@@ -60,7 +60,7 @@ function httpGet(url, maxRedirects = 5) {
 }
 
 /** 記事ページから meta description / og:description を取得 */
-async function fetchMetaDescription(url, timeoutMs = 8000) {
+async function fetchMetaDescription(url, timeoutMs = 3000) {
   try {
     const html = await Promise.race([
       httpGet(url),
