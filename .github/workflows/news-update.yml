@@ -2,8 +2,9 @@ name: ニュース自動更新
 
 on:
   schedule:
-    - cron: '0 22 * * *'  # UTC 22:00 = JST 07:00
-  workflow_dispatch:       # 手動実行も可能
+    - cron: '0 22 * * *'   # UTC 22:00 = JST 07:00（メイン）
+    - cron: '30 0 * * *'   # UTC 00:30 = JST 09:30（バックアップ）
+  workflow_dispatch:        # 手動実行も可能
 
 permissions:
   contents: write
