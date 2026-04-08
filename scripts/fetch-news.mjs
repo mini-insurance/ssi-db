@@ -173,7 +173,9 @@ async function main() {
   existing.unshift(...newItems);
   existing.sort((a, b) => b.date.localeCompare(a.date));
 
-  const output = { lastFetched: new Date().toISOString().slice(0, 10), items: existing };
+  // JST (UTC+9) で日付を記録
+  const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  const output = { lastFetched: now.toISOString().slice(0, 10), items: existing };
   writeFileSync(NEWS_FILE, JSON.stringify(output, null, 2) + '\n', 'utf-8');
   console.log(`\n完了: ${newItems.length} 件追加 (合計 ${existing.length} 件)`);
 }
