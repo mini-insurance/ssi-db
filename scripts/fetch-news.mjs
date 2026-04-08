@@ -39,16 +39,17 @@ function matchCompanies(title) {
   });
 }
 
-function httpGet(url, maxRedirects = 5) {
+function httpGet(url, maxRedirects = 5, signal) {
   return new Promise((resolve, reject) => {
     if (maxRedirects <= 0) return reject(new Error('too many redirects'));
+    if (signal?.aborted) return reject(new Error('aborted'));
     const mod = url.startsWith('https') ? https : http;
     const req = mod.get(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' } }, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         const loc = res.headers.location.startsWith('http')
           ? res.headers.location
           : new URL(res.headers.location, url).href;
-        return httpGet(loc, maxRedirects - 1).then(resolve, reject);
+        return httpGet(loc, maxRedirects - 1, signal).then(resolve, reject);
       }
       let data = '';
       res.on('data', c => { data += c; if (data.length > 100000) res.destroy(); });
@@ -56,16 +57,16 @@ function httpGet(url, maxRedirects = 5) {
     });
     req.on('error', reject);
     req.setTimeout(15000, () => { req.destroy(); reject(new Error('timeout')); });
+    if (signal) signal.addEventListener('abort', () => { req.destroy(); reject(new Error('aborted')); }, { once: true });
   });
 }
 
 /** 記事ページから meta description / og:description を取得 */
 async function fetchMetaDescription(url, timeoutMs = 3000) {
+  const ac = new AbortController();
+  const timer = setTimeout(() => ac.abort(), timeoutMs);
   try {
-    const html = await Promise.race([
-      httpGet(url),
-      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), timeoutMs)),
-    ]);
+    const html = await httpGet(url, 3, ac.signal);
     const metaDesc =
       html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] ||
       html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']description["']/i)?.[1];
@@ -76,6 +77,8 @@ async function fetchMetaDescription(url, timeoutMs = 3000) {
     return desc.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'").replace(/&quot;/g, '"').trim();
   } catch {
     return '';
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -109,11 +112,11 @@ function parseRssItems(xml) {
   return items;
 }
 
-function toDateStr(d) {
-  if (!d) return new Date().toISOString().slice(0, 10);
-  const dt = new Date(d);
-  if (isNaN(dt.getTime())) return new Date().toISOString().slice(0, 10);
-  return dt.toISOString().slice(0, 10);
+/** JST (UTC+9) で YYYY-MM-DD を返す */
+function toJstDateStr(d) {
+  const dt = d ? new Date(d) : new Date();
+  if (isNaN(dt.getTime())) return toJstDateStr();
+  return new Date(dt.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
 }
 
 async function main() {
@@ -137,7 +140,7 @@ async function main() {
     if (!title || existingUrls.has(url) || existingTitles.has(title.slice(0, 30))) continue;
 
     newItems.push({
-      date: toDateStr(item.pubDate),
+      date: toJstDateStr(item.pubDate),
       title,
       summary: '',
       source: item.source,
@@ -148,7 +151,7 @@ async function main() {
     });
     existingTitles.add(title.slice(0, 30));
     existingUrls.add(url);
-    console.log(`  + ${toDateStr(item.pubDate)} ${title.slice(0, 60)}`);
+    console.log(`  + ${toJstDateStr(item.pubDate)} ${title.slice(0, 60)}`);
   }
 
   // 新規記事の概要を取得（descUrl → meta description）
@@ -173,9 +176,7 @@ async function main() {
   existing.unshift(...newItems);
   existing.sort((a, b) => b.date.localeCompare(a.date));
 
-  // JST (UTC+9) で日付を記録
-  const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
-  const output = { lastFetched: now.toISOString().slice(0, 10), items: existing };
+  const output = { lastFetched: toJstDateStr(), items: existing };
   writeFileSync(NEWS_FILE, JSON.stringify(output, null, 2) + '\n', 'utf-8');
   console.log(`\n完了: ${newItems.length} 件追加 (合計 ${existing.length} 件)`);
 }
