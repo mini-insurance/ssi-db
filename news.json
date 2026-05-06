@@ -1,5 +1,5 @@
 {
-  "lastFetched": "2026-05-06",
+  "lastFetched": "2026-05-07",
   "items": [
     {
       "date": "2026-06-01",
@@ -656,6 +656,15 @@
       "source": "ライブドアニュース",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE91ZG9OQU9SV2U1dVFZV1BITWNubUpLRGlnYW9uWTJEd3ZQek9rVndHS2hsUm0yZmE4a0Rrb283NEZiOWVEdVRsSVVhU3lNTE0wRGVIUURFN3JhdW8zZm9z?oc=5",
       "category": "M&A",
+      "companies": []
+    },
+    {
+      "date": "2026-03-23",
+      "title": "プレスリリース：推し活キャンセル保険が「第12回 少額短期保険大賞」を受賞（PR TIMES）",
+      "summary": "",
+      "source": "毎日新聞",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE93UFF5M3JrYVRDNFBZQmFOQmhDM3prWC1rbTBTNVVsbnpwQ2JlY240b2dMTGMwQXAwaEgwZzExMHdjSDFMUmsxMll5cjU1eU5fZzVFQnc2dWNIVnZMVng1QmlqYThzSHJU?oc=5",
+      "category": "新商品",
       "companies": []
     },
     {
@@ -2041,6 +2050,18 @@
       "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1pbW1HU2JfeGpsam1rXy1NS3EzQ2s4VXlEYkh3aVM5RkZ2YnpyUTg1OU11ajlPdXdSQkc4SnNMeEFFaGl6WVR3NmlhS0tBbnVyek1mZ2ZmcS1YTzBuZTFyYw?oc=5",
       "category": "業界動向",
       "companies": []
+    },
+    {
+      "date": "2025-09-01",
+      "title": "フレックスグループ、少短 BPOサービス訴求【賃貸住宅フェア2025 in 東京 出展者紹介】",
+      "summary": "",
+      "source": "全国賃貸住宅新聞",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5YeWZXZmZOSXdhZUJ3c3dQTy1UZXlUOU02bmpGYkpTMHVBcTM4NUstYVhlWnVqRk0yd3h4Q3oxdk01MGxOend5R3c2eV8yaWZNWHMyWWNOZG0?oc=5",
+      "category": "業界動向",
+      "companies": [
+        "フレックス少額短期保険",
+        "賃貸少額短期保険"
+      ]
     },
     {
       "date": "2025-09-01",
