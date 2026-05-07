@@ -103,6 +103,15 @@
     },
     {
       "date": "2026-04-20",
+      "title": "Press",
+      "summary": "",
+      "source": "レスポンス（Response.jp）",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPTGNwSU9xTWYyUmU4blF2bVV5VlNrMlNWNVFuVGVvd25DTFZUSktjV3dQazNXd2dlLUcxT0VGUzV4aGxmbVpLTUhOSi1SbDFUUWVaUDRINmxGamtGRHFKWmFYUmoyRm0za1RfYU1IRkRObzdtNGdnckYyVGFEbTFkQ0FrM2U?oc=5",
+      "category": "業界動向",
+      "companies": []
+    },
+    {
+      "date": "2026-04-20",
       "title": "業界初 GWの熱中症リスクにも対応する 「レジャー・スポーツ傷害保険(1日型)」を販売開始 ケガ・賠償責任に加え、熱中症も補償",
       "summary": "",
       "source": "newscast.jp",
@@ -1821,6 +1830,17 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE44MmF2cjF1b3hKU2MtMnpUbGo4Nnh2ZzEwVkJFYUUwVmZXSEdVOHRFN0dFa0NhSDJqYXVtc3NKNWk5Z1BpZC15Q0puWkRURThBTnVoRkIwVkdRcjBvel81cDJMT2owNFpGWmc?oc=5",
       "category": "業界動向",
       "companies": []
+    },
+    {
+      "date": "2025-10-01",
+      "title": "2025年 オリコン顧客満足度®調査『ペット保険（FP評価）』ランキングにおいて 「SBIペット少短のペット保険」が 総合第1位を獲得",
+      "summary": "",
+      "source": "sbigroup.co.jp",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9NeThsMl9QNFB4NGpKSE4ybjdWV2tLdFdDSzJTNWZPSUM4T01qUTNYOVNSSWhjQlNzRnIxamp1YnNCMVRpZDZMTXVMSml3eVlIZUxoM3ozYnNubzE2ZnJOeEFGMVJjQQ?oc=5",
+      "category": "業界動向",
+      "companies": [
+        "SBIペット少額短期保険"
+      ]
     },
     {
       "date": "2025-10-01",
