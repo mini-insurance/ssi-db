@@ -1,5 +1,5 @@
 {
-  "lastFetched": "2026-05-21",
+  "lastFetched": "2026-05-22",
   "items": [
     {
       "date": "2026-06-01",
@@ -8,6 +8,15 @@
       "source": "金融庁 / BUSINESS LAWYERS / keiyaku-watch",
       "url": "https://keiyaku-watch.jp/media/hourei/hokengyouhou-2026/",
       "category": "規制",
+      "companies": []
+    },
+    {
+      "date": "2026-05-21",
+      "title": "月額190円から選べる「povoのスマホ保険」提供開始 - 他キャリアもOK、新品中古問わず補償",
+      "summary": "",
+      "source": "マイナビニュース",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB2ZXJsaUVMZmxCRFczbEJyQnpKaHI5UVR5NWlHYmxzQkJwcGw2RWlMSThzc3pibHRxVThzZGVFV0plcGsteFJpbV9QOWU1UVNYTWxraFlSaEFjdTIx?oc=5",
+      "category": "新商品",
       "companies": []
     },
     {
@@ -56,6 +65,17 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1sLVdwanpTUkhpSXZCS2xnYWhlQk02bzk3V0FOWnpjaXkwZFlfdGhFTjlOZmpGR3dnQTVySXBSeEhRSEZiZ2daLU80NWU0My1WOUs0ZFE2TUJfWFFsSk96SlJYVVJjbVd2aEE?oc=5",
       "category": "業界動向",
       "companies": []
+    },
+    {
+      "date": "2026-05-08",
+      "title": "【ミカタ少額��期保険】 弁護士ドットコム株式会社との資本業務提携およびグループ参画に関するお知らせ",
+      "summary": "",
+      "source": "zakⅡ",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9pUUlTTUczMEl2MmJUYXJKWmMxU2lpRURvM3BzZzNDNkFUc1puTE9jU2ppU1pnd1NRcnhDS2QwbVZUVTZ6UnRySXZkZmk3aElnU05XTGR3elFJUzhZTm5iS2lxRjQtc00xRGhtZmVyVjFTSUxHc3hOd2h2bmFJUQ?oc=5",
+      "category": "提携",
+      "companies": [
+        "ミカタ少額短期保険"
+      ]
     },
     {
       "date": "2026-05-08",
